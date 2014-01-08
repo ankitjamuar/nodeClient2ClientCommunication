@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    
+
+  </head>
+  <body>
+    <script>
+      var socket = io.connect();
+      socket.on('message',function(data){
+          //console.log( data.message);
+          $("#box").css('margin-left',data.message);
+      });
+      document.onmousemove = function(e){
+          socket.emit('client_data', {'letter': e.pageX});
+
+      };
+    </script>
+    <div>This is our index.html file</div>
+    <div style="background: black; height: 20px; width: 20px;" id="box">&nbsp;</div>
+  </body>
+</html>
